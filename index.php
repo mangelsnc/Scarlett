@@ -11,5 +11,5 @@ $input =  $request->query->get('name', "World");
  
 $response = new Response(sprintf('Hello %s', htmlspecialchars($input, ENT_QUOTES, 'UTF-8')));
 
-$response->prepare($req;est);
+$response->prepare($request);
 $response->send();
