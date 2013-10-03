@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "8b0d4a110f80a6bbbcc5a6b5bffda0a2",
+    "hash": "cd61ad5f9c587637a915092d7faadf57",
     "packages": [
         {
             "name": "symfony/class-loader",
@@ -62,12 +62,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "f7ebccd751dd0cd0d48a9384daa5e634a814be63"
+                "reference": "ace4b5a570063b3bbcc79b275c144963e27bffa9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/f7ebccd751dd0cd0d48a9384daa5e634a814be63",
-                "reference": "f7ebccd751dd0cd0d48a9384daa5e634a814be63",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/ace4b5a570063b3bbcc79b275c144963e27bffa9",
+                "reference": "ace4b5a570063b3bbcc79b275c144963e27bffa9",
                 "shasum": ""
             },
             "require": {
@@ -103,7 +103,66 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2013-09-19 11:00:34"
+            "time": "2013-09-30 17:51:08"
+        },
+        {
+            "name": "symfony/routing",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/Routing",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Routing.git",
+                "reference": "1065935ca7ad083d562a58e31a87a88c706db59f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Routing/zipball/1065935ca7ad083d562a58e31a87a88c706db59f",
+                "reference": "1065935ca7ad083d562a58e31a87a88c706db59f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "doctrine/common": "~2.2",
+                "psr/log": "~1.0",
+                "symfony/config": "~2.2",
+                "symfony/expression-language": "~2.4",
+                "symfony/yaml": "~2.0"
+            },
+            "suggest": {
+                "doctrine/common": "",
+                "symfony/config": "",
+                "symfony/yaml": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Routing\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Routing Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-09-29 19:54:28"
         }
     ],
     "packages-dev": [
@@ -115,7 +174,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "symfony/class-loader": 20,
-        "symfony/http-foundation": 20
+        "symfony/http-foundation": 20,
+        "symfony/routing": 20
     },
     "platform": [
 
