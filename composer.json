@@ -2,6 +2,10 @@
     "require": {
         "symfony/class-loader": "2.4.*@dev",
         "symfony/http-foundation": "2.4.*@dev",
-        "symfony/routing": "2.4.*@dev"
+        "symfony/routing": "2.4.*@dev",
+        "symfony/http-kernel": "2.4.*@dev"
+    },
+    "autoload": {
+        "psr-0": { "Scarlett": "src/", "Calendar": "src/" }
     }
 }
