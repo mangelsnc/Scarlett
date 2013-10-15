@@ -6,7 +6,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing;
 use Symfony\Component\HttpKernel;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Scarlett;
+use Scarlett\Event\KernelEvents;
+use Scarlett\Listener\ResponseListener;
 
 function render_template($request)
 {
@@ -25,7 +28,10 @@ $context->fromRequest($request);
 $matcher = new Routing\Matcher\UrlMatcher($routes, $context);
 $resolver = new HttpKernel\Controller\ControllerResolver();
 
-$scarlett = new Scarlett\Framework($matcher, $resolver);
-$response = $scarlett->handle($request);
+$dispatcher = new EventDispatcher();
+$dispatcher->addListener(KernelEvents::RESPONSE, array(new ResponseListener(), 'onResponse'));
+
+$kernel = new Scarlett\Kernel($dispatcher, $matcher, $resolver);
+$response = $kernel->handle($request);
 
 $response->send();
