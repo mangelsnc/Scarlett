@@ -33,15 +33,25 @@ class Kernel
             $arguments = $this->resolver->getArguments($request, $controller);
 
             $response = call_user_func_array($controller, $arguments);
+
+            if(!$response instanceof Response){
+                $e = new \Exception('Controller must return a Response Object', 100);
+                $this->dispatch(KernelEvents::EXCEPTION, new ExceptionEvent($request, $e));                
+            }
+
         }catch(ResourceNotFoundException $e) {
             $response = new Response('Not found', 404);
         }catch(\Exception $e){
-            $response = new Response('[Scarlett Kernel Exception] '.$e->getMessage(), 500);
             $this->dispatcher->dispatch(KernelEvents::EXCEPTION, new ExceptionEvent($request, $e));
+            $this->handleException($e, $request);
         }
         $this->dispatcher->dispatch(KernelEvents::RESPONSE, new ResponseEvent($request, $response));
 
         return $response;
+    }
+
+    public function handleException(\Exception $e, Request $request){
+        return new Response("[Scarlett Exception] " . $e->getMessage(), 500);
     }
     
 }
