@@ -23,10 +23,12 @@ class LeapYearController extends Controller
 
     public function primeAction(Request $request, $number)
     {
-        if($number%$number == 0  && $number%1 == 0){
-            $message = 'Prime number';
-        }else{
-            $message = 'Not prime';
+        $message = "It's prime!";
+        for($i=$number-1;$i>=2;$i--) {
+            if($number%$i == 0) {
+                $message =" It's not prime!";
+                break;
+            }
         }
 
         return $this->render('primeNumber', array('message' => $message));
