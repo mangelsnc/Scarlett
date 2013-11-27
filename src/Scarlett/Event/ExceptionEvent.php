@@ -4,7 +4,7 @@ namespace Scarlett\Event;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use
+use Symfony\Component\EventDispatcher\Event;
 
 class ExceptionEvent extends Event
 {
