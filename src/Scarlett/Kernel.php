@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Scarlett\Event\ResponseEvent;
+use Scarlett\Event;
 use Scarlett\Event\KernelEvents;
 
 class Kernel
@@ -36,16 +36,19 @@ class Kernel
 
             if(!$response instanceof Response){
                 $e = new \Exception('Controller must return a Response Object', 100);
-                $this->dispatch(KernelEvents::EXCEPTION, new ExceptionEvent($request, $e));                
+                $this->dispatcher->dispatch(KernelEvents::EXCEPTION, new Event\ExceptionEvent($request, $e));
+                
+                return $this->handleException($e, $request);
             }
 
         }catch(ResourceNotFoundException $e) {
             $response = new Response('Not found', 404);
         }catch(\Exception $e){
-            $this->dispatcher->dispatch(KernelEvents::EXCEPTION, new ExceptionEvent($request, $e));
-            $this->handleException($e, $request);
+            $this->dispatcher->dispatch(KernelEvents::EXCEPTION, new Event\ExceptionEvent($request, $e));
+            
+            return $this->handleException($e, $request);
         }
-        $this->dispatcher->dispatch(KernelEvents::RESPONSE, new ResponseEvent($request, $response));
+        $this->dispatcher->dispatch(KernelEvents::RESPONSE, new Event\ResponseEvent($request, $response));
 
         return $response;
     }
